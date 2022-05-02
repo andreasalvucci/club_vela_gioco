@@ -18,58 +18,74 @@ app.get('/', (req, res) => {
 
 app.get('/QpC9ZvbcR79G3HHd', (req, res) => {
     console.log("Arrivata request per primo tassello")
-    var primoTassello = req.cookies.primoTassello;
-    if(primoTassello == undefined){
-        res.cookie('primoTassello',"QpC9ZvbcR79G3HHd", { maxAge: 900000, httpOnly: true });
+    var nTasselli = req.cookies.nTasselli;
+    if(nTasselli != undefined){
+        return res.sendFile(path.join(__dirname,'/pages/'+nTasselli+'.html'));
+
+    }
+    
+    if(nTasselli == undefined){
+        res.cookie('nTasselli',"1", { maxAge: 900000, httpOnly: true });
     }
     console.log("Avanti")
-    res.status(200).json({message:"Complimenti! Hai trovato il primo tassello"})
-    return
+    return res.sendFile(path.join(__dirname,'/pages/1.html'));
 })
 
 app.get('/uxDsnMVWsrM8S5KE', (req, res) => {
-    var primoTassello = req.cookies.primoTassello;
-    if(primoTassello == undefined){
+    var nTasselli = req.cookies.nTasselli;
+    if(nTasselli == undefined){
         res.status(401).json({message:"Spiacenti, devi prima collezionare il primo tassello"})
-        return
+        return 
     }
-    if(primoTassello == "QpC9ZvbcR79G3HHd"){
-        res.cookie('secondoTassello','uxDsnMVWsrM8S5KE', { maxAge: 900000, httpOnly: true })
-        res.status(200).json({message:"Complimenti! Hai trovato il secondo tassello!"})
+    if(nTasselli != "1"){
+        return res.sendFile(path.join(__dirname,'/pages/'+nTasselli+'.html'));
+
+    }
+    if(nTasselli == "1"){
+        res.cookie('nTasselli','2', { maxAge: 900000, httpOnly: true })
+        return res.sendFile(path.join(__dirname,'/pages/2.html'));
         
         return
     }
 })
 
 app.get('/3ULtNzytBQAJzkUR', (req, res) => {
-    var primoTassello = req.cookies.primoTassello;
-    var secondoTassello = req.cookies.secondoTassello;
-    if(secondoTassello == undefined || primoTassello == undefined){
+    var nTasselli = req.cookies.nTasselli;
+    if(nTasselli == undefined){
         
-        res.status(401).json({message:"Spiacenti, devi prima collezionare il secondo tassello"})
+        res.status(401).json({message:"Spiacenti, devi prima collezionare il primo tassello"})
 
     }
-    if(primoTassello == "QpC9ZvbcR79G3HHd" && secondoTassello == "uxDsnMVWsrM8S5KE"){
-        res.cookie('terzoTassello','3ULtNzytBQAJzkUR', { maxAge: 900000, httpOnly: true })
-        res.status(200).json({message:"Complimenti! Hai trovato il terzo tassello"})
+    if(nTasselli != "2"){
+        return res.sendFile(path.join(__dirname,'/pages/'+nTasselli+'.html'));
+
+    }
+    else{
+        res.cookie('nTasselli','3', { maxAge: 900000, httpOnly: true })
+        return res.sendFile(path.join(__dirname,'/pages/3.html'));
     }
     return
 })
 
 app.get('/d9JxqHn9z5pBjqvp', (req, res) => {
-    var primoTassello = req.cookies.primoTassello;
-    var secondoTassello = req.cookies.secondoTassello;
-    var terzoTassello = req.cookies.terzoTassello;
-    if(secondoTassello == undefined || primoTassello == undefined || terzoTassello == undefined){
+    var nTasselli = req.cookies.nTasselli;
+    if(nTasselli == undefined){
         
-        res.status(401).json({message:"Spiacenti, devi prima collezionare il terzo tassello"})
+        res.status(401).json({message:"Spiacenti, devi prima collezionare il primo tassello"})
 
     }
-
-    if(primoTassello == "QpC9ZvbcR79G3HHd" && secondoTassello == "uxDsnMVWsrM8S5KE" && terzoTassello =="3ULtNzytBQAJzkUR"){
-        res.status(200).json({message:"Complimenti! Hai trovato tutti i tasselli, scopri ora il tuo premio!"})
+    if(nTasselli == "4"){
+        return res.sendFile(path.join(__dirname,'/pages/4.html'));
     }
-    return
+
+    if(nTasselli != "3"){
+        return res.sendFile(path.join(__dirname,'/pages/'+nTasselli+'.html'));
+
+    }
+    else{
+        res.cookie('nTasselli','4', { maxAge: 900000, httpOnly: true })
+        return res.sendFile(path.join(__dirname,'/pages/4.html'));
+    }
 })
 
 app.listen(PORT, async () => {
