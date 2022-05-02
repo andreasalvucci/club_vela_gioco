@@ -1,3 +1,4 @@
+const PORT = process.env.PORT || 3000;
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -71,6 +72,6 @@ app.get('/d9JxqHn9z5pBjqvp', (req, res) => {
     return
 })
 
-app.listen(process.env.port || BACKEND_PORT, async () => {
+app.listen(PORT, async () => {
     console.log("HTTP Server listening on port " + BACKEND_PORT+"...");
 });
