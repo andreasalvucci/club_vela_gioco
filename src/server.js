@@ -6,14 +6,13 @@ const cookieParser = require('cookie-parser')
 const app = express()
 
 const completata_val = "enzotomasivive"
+app.use(express.static(__dirname + '/public'));
 
 app.use(cookieParser())
 
 app.get('/', (req, res) => {
     console.log("ARRIVATA REQUEST")
-    return res.send({
-        timestamp: new Date().getTime(),
-    })
+    return res.sendFile(path.join(__dirname,'index.html'));
     
 })
 
