@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const app = express()
 
+const completata_val = "enzotomasivive"
+
 app.use(cookieParser())
 
 app.get('/', (req, res) => {
@@ -41,7 +43,6 @@ app.get('/uxDsnMVWsrM8S5KE', (req, res) => {
 })
 
 app.get('/3ULtNzytBQAJzkUR', (req, res) => {
-
     var primoTassello = req.cookies.primoTassello;
     var secondoTassello = req.cookies.secondoTassello;
     if(secondoTassello == undefined || primoTassello == undefined){
