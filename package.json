@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "run": "node ./src/server.js",
-    "start": "npm start"
+    "start": "node ./sec/server.js"
   },
   "repository": {
     "type": "git",
