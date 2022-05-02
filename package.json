@@ -5,7 +5,8 @@
   "main": "./src/server.js",
   "scripts": {
     "test": "jest",
-    "run": "node ./src/server.js"
+    "run": "node ./src/server.js",
+    "start": "npm start"
   },
   "repository": {
     "type": "git",
