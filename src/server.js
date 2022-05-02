@@ -4,7 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const app = express()
-const BACKEND_PORT = 8080
 
 app.use(cookieParser())
 
@@ -17,11 +16,12 @@ app.get('/', (req, res) => {
 })
 
 app.get('/QpC9ZvbcR79G3HHd', (req, res) => {
+    console.log("Arrivata request per primo tassello")
     var primoTassello = req.cookies.primoTassello;
     if(primoTassello == undefined){
         res.cookie('primoTassello',"QpC9ZvbcR79G3HHd", { maxAge: 900000, httpOnly: true });
-        return
     }
+    console.log("Avanti")
     res.status(200).json({message:"Complimenti! Hai trovato il primo tassello"})
     return
 })
@@ -73,5 +73,5 @@ app.get('/d9JxqHn9z5pBjqvp', (req, res) => {
 })
 
 app.listen(PORT, async () => {
-    console.log("HTTP Server listening on port " + BACKEND_PORT+"...");
+    console.log("HTTP Server listening on port " + PORT+"...");
 });
