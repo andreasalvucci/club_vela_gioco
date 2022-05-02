@@ -71,6 +71,6 @@ app.get('/d9JxqHn9z5pBjqvp', (req, res) => {
     return
 })
 
-app.listen(BACKEND_PORT, async () => {
+app.listen(process.env.port || BACKEND_PORT, async () => {
     console.log("HTTP Server listening on port " + BACKEND_PORT+"...");
 });
